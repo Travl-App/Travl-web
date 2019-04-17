@@ -5,7 +5,7 @@ import MDSpinner from 'react-md-spinner';
 import { Switch, Route } from 'react-router-dom';
 
 import Articles from './ArticlesListContainer';
-import Article from './Article';
+import ArticleContainer from './ArticleContainer';
 
 export default class MainArticleContainer extends PureComponent {
 
@@ -13,7 +13,7 @@ export default class MainArticleContainer extends PureComponent {
     return (
       <Switch>
         <Route exact path="/articles" component={Articles} />
-        <Route path="/articles/:id" component={Article} />
+        <Route path="/articles/:id" component={ArticleContainer} />
       </Switch>
     );
   }

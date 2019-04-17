@@ -6,14 +6,13 @@ import MDSpinner from 'react-md-spinner';
 import AuthorName from '../components/AuthorName';
 import ArticlePlaces from '../containers/ArticlePlaces';
 
-export default class Article extends PureComponent {
+export default class ArticleContainer extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       article: [],
       loading: false,
-      path: this.props.path
     };
   }
 

@@ -6,10 +6,16 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Articles from './containers/ArticlesListContainer';
 import MainArticles from './containers/MainArticlesContainer';
-import Article from './containers/Article';
-import Place from './components/Place';
+import ArticleContainer from './containers/ArticleContainer';
+import PlaceContainer from './containers/PlaceContainer';
 
 export default class App extends Component {
+
+  setPlaceTitle = (value) => {
+    this.setState({
+      title: value
+    })
+  }
 
   render() {
     return (
@@ -19,8 +25,8 @@ export default class App extends Component {
           <Switch >
             <Route exact path="/" component={Home} />
             <Route path="/articles" component={MainArticles} />
-            <Route path="/articles/1" component={Article} />
-            <Route path="/places/:id/" component={Place} />
+            <Route path="/articles/1" component={ArticleContainer} />
+            <Route path="/places/:id/" component={PlaceContainer} />
           </Switch>
         </main>
         <Footer />

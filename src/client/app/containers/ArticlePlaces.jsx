@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-import PlaceCard from '../components/PlaceCard';
+import ArticlePlaceCard from '../components/ArticlePlaceCard';
 
 
 export default class ArticlePlaces extends PureComponent {
   static propTypes = {
-    places: PropTypes.shape({
+    places: PropTypes.objectOf({
       link: PropTypes.string,
       image: PropTypes.string,
       description: PropTypes.string,
@@ -23,7 +23,7 @@ export default class ArticlePlaces extends PureComponent {
     const { places } = this.props;
     return (
       <div className="article__places">
-        { places.map(place => <PlaceCard {...place} />) }
+        { places.map(place => <ArticlePlaceCard {...place} />) }
       </div>
     );
   }
