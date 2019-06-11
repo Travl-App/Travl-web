@@ -11,22 +11,17 @@ import PlaceContainer from './containers/PlaceContainer';
 
 export default class App extends Component {
 
-  setPlaceTitle = (value) => {
-    this.setState({
-      title: value
-    })
-  }
-
   render() {
     return (
       <div className="body">
         <Header />
-        <main>
+        <main className="container">
           <Switch >
             <Route exact path="/" component={Home} />
             <Route path="/articles" component={MainArticles} />
             <Route path="/articles/1" component={ArticleContainer} />
             <Route path="/places/:id/" component={PlaceContainer} />
+            <Route path="/articles/:id" component={ArticleContainer} />
           </Switch>
         </main>
         <Footer />

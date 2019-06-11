@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import MDSpinner from 'react-md-spinner';
 
-import MainArticlesList from '../containers/MainArticlesList'
+import MainArticlesList from './MainArticlesList'
 
-export default class Home extends PureComponent {
+export default class HomePageContainer extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -31,10 +32,12 @@ export default class Home extends PureComponent {
 
   render() {
     const { loading, articles } = this.state;
+
     return (
-      <div className="main_page container">
+      <div className="container">
         { loading ? <MDSpinner /> : <MainArticlesList articles = {articles} /> }
       </div>
+
     );
   }
 }

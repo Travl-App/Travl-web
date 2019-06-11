@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner';
 
-import HeaderTop from './HeaderTop'
-import HeaderNavigation from './HeaderNavigation'
 import Cities from './CitiesNames'
 
-export default class Header extends Component {
+export default class HeaderNavigation extends Component {
   constructor(props){
     super(props);
 
@@ -46,15 +44,7 @@ export default class Header extends Component {
   render() {
     const { loading, cities } = this.state;
     return (
-      <header className="header">
-        <img className="header__picture" src='images/photo_main.jpg'/>
-        <div className="header__top">
-          <Link to="/" className="header__logo" onClick={this.toggleClass}>TRAVL</Link>
-          <div className="header__top_navigation">
-            <a href="#">ИЗБРАННОЕ</a>
-            <a className="header__button_login" href="#">ВОЙТИ</a>
-          </div>
-        </div>
+      <div>
         <ul className="header__navigation">
           <li> <a className={this.state.isActive===true ? "selected" : null} onClick={this.showSearchCities('https://travl.dev/api/cities/')}> Города </a> </li>
           <li> <NavLink to='/articles' activeClassName={this.state.active===true ? "selected" : null} exact onClick={this.toggleClass}> Статьи </NavLink> </li>
@@ -68,7 +58,7 @@ export default class Header extends Component {
             </div>
           </div>
         </div>
-      </header>
+      </div>
     );
   }
 }

@@ -15,7 +15,8 @@ export default class ArticlePlaceCard extends PureComponent {
       other_images: PropTypes.arrayOf({
         link: PropTypes.string,
       }),
-      description: PropTypes.string,
+      title: PropTypes.string,
+      article_text: PropTypes.string,
       id: PropTypes.number,
   };
 
@@ -29,62 +30,47 @@ export default class ArticlePlaceCard extends PureComponent {
   }
 
   static defaultProps = {
-    description: 'Место не найдено',
+    article_text: 'Место не найдено',
     other_images: []
   };
-
-  sendFetch = (url) => () => {
-    this.setState({
-      loading: true,
-      title: []
-    })
-    fetch(url)
-      .then(res => res.json())
-      .then(title => {
-        this.setState({
-          loading: false,
-          title: title.place
-        })
-        console.log('Fetched')
-      })
-  }
 
   componentWillMount(){
     this.setState({
       loading: true,
-      title: []
+      images: []
     })
     fetch(`https://travl.dev/api/places/${this.props.id}`)
       .then(res => res.json())
-      .then(title => {
+      .then(images => {
         this.setState({
           loading: false,
-          title: title
+          images: images
         })
       })
   }
 
   render() {
-    const { link, selected_image, other_images, description, id } = this.props;
-    const { loading, title } = this.state;
+    const { link, selected_image, title, other_images, article_text, id } = this.props;
+    const { loading, images } = this.state;
 
     return (
-        <div className="article__place_card">
-
-          <div>
-            { loading ? <MDSpinner /> :
-              <Link to={`/places/${id}`} id={`place_${id}`} onClick = {this.sendFetch(`https://travl.dev/api/places/${id}`)}>
-                <h2 className="h2"> {title.place.title} </h2>
-              </Link>
-            }
-          </div>
-          <Carousel showArrows= { false } showStatus={ false } showThumbs={ false }>
+        <div>
+          <div className="article__place_card">
             <div>
-              <img className="article__place_image" src={`https://travl.dev${selected_image}`} alt="place image"></img>
+              { loading ? <MDSpinner /> :
+                <Link to={`/places/${id}`} id={`place_${id}`}>
+                  <h2 className="h2"> {title} </h2>
+                </Link>
+              }
             </div>
-            { other_images.map(other_image => <PlaceOtherImage imgSrc = {other_image} />) }
-          </Carousel>
-          <p className="article__place_description"> {description}</p>
+            <Carousel showArrows= { true } showStatus={ false } showThumbs={ false }>
+              <div>
+                <img className="article__place_image" src={`https://travl.dev${selected_image}`} alt="place image"></img>
+              </div>
+              { other_images.map(other_image => <PlaceOtherImage imgSrc = {other_image} />) }
+            </Carousel>
+          </div>
+          <p className="article__place_description"> {article_text}</p>
         </div>
 
     );

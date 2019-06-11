@@ -35,12 +35,17 @@ export default class ArticleContainer extends PureComponent {
     const { loading, article } = this.state;
 
     return (
-      <div className="article articles" id={`article_${article.id}`}>
-        <h2 className="h2">{article.title}</h2>
+      <div className="article articles main_page" id={`article_${article.id}`}>
+
+        <div className="article__head container">
+          <h2 className="h2 article__title">{article.title}</h2>
+        </div>
+        <img className="article__cover" src={`https://travl.dev${article.image_cover}`}/>
         <AuthorName author={ article.author } modified = { article.modified }/>
-        <img className="article__place_image" src={`https://travl.dev${article.image_cover}`}/>
-        <p>{article.subtitle}</p>
-        { loading ? <MDSpinner /> : <ArticlePlaces places={ article.article_places } /> }
+        <div className="article__whole_text">
+          <p>{article.subtitle}</p>
+          { loading ? <MDSpinner /> : <ArticlePlaces places={ article.article_places } /> }
+        </div>
       </div>
 
     );

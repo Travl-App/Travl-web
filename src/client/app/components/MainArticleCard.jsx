@@ -22,8 +22,9 @@ export default class ArticleCard extends PureComponent {
 
 
     return (
-      <Link to={`articles/${getId(link)}`} className={`article__place_card article__card`} id={`articles_${getId(link)}`}>
+      <Link to={`articles/${getId(link)}`} className={`main__article_card`} key={`main_articles_${getId(link)}`}>
         <ArticleImage imageSource ={`https://travl.dev${link}`} />
+        <div className='main__image_hover'/>
         <h2 className="h2">{title}</h2>
       </Link>
 
